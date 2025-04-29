@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BEYOND THE FRAMES | Bharath Gada</title>
 
   <!-- TailwindCSS -->
@@ -12,23 +12,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
   <!-- Remix Icons -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" />
 
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="style.css">
-
-  <!-- ScrollReveal.js -->
+  <!-- ScrollReveal -->
   <script src="https://unpkg.com/scrollreveal"></script>
 
-  <style>
-    body { font-family: 'DM Sans', sans-serif; }
-    h1, h2, h3 { font-family: 'Playfair Display', serif; }
-  </style>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body class="light transition-colors duration-500">
 
-<!-- Navbar -->
-<nav class="fixed w-full flex justify-between items-center px-6 py-4 bg-white dark:bg-gray-900 bg-opacity-80 backdrop-blur-md z-50 shadow-md">
+<!-- ===== Loading Screen ===== -->
+<div id="loader" class="fixed inset-0 bg-white flex items-center justify-center z-50">
+  <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-primary border-opacity-50"></div>
+</div>
+
+<!-- ===== Navbar ===== -->
+<nav class="fixed w-full flex justify-between items-center px-6 py-4 bg-white dark:bg-gray-900 bg-opacity-80 backdrop-blur-md z-40 shadow-md">
   <a href="#" class="text-2xl font-bold text-primary dark:text-white">BEYOND THE FRAMES</a>
   <div class="flex items-center gap-6">
     <a href="#about" class="text-gray-800 dark:text-white hover:text-primary transition">About</a>
@@ -41,16 +42,16 @@
   </div>
 </nav>
 
-<!-- Hero Section -->
-<section class="relative h-screen flex items-center justify-center bg-cover bg-center" style="background-image: url('images/hero.jpg');">
+<!-- ===== Hero Section ===== -->
+<section class="relative h-screen flex items-center justify-center bg-cover bg-center zoom-bg" style="background-image: url('images/hero.jpg');">
   <div class="absolute inset-0 bg-black bg-opacity-40 backdrop-blur-sm"></div>
-  <div class="relative z-10 text-center space-y-4">
-    <h1 class="text-white text-5xl md:text-7xl font-bold">BEYOND THE FRAMES</h1>
+  <div class="relative z-10 text-center">
+    <h1 class="text-white text-5xl md:text-7xl font-bold animate-fade-in">BEYOND THE FRAMES</h1>
     <a href="#gallery" class="inline-block mt-8 px-8 py-3 bg-primary text-white rounded-full hover:scale-105 transition">View Gallery</a>
   </div>
 </section>
 
-<!-- About Section -->
+<!-- ===== About Section ===== -->
 <section id="about" class="py-24 bg-white dark:bg-gray-900 text-center">
   <div class="container mx-auto px-6">
     <h2 class="text-4xl font-bold mb-12 text-gray-900 dark:text-white">About Me</h2>
@@ -63,7 +64,7 @@
   </div>
 </section>
 
-<!-- Gallery Section -->
+<!-- ===== Gallery Section ===== -->
 <section id="gallery" class="py-24 bg-gray-100 dark:bg-gray-800">
   <div class="container mx-auto px-6">
     <h2 class="text-4xl font-bold text-center text-gray-900 dark:text-white mb-12">Gallery</h2>
@@ -71,7 +72,7 @@
   </div>
 </section>
 
-<!-- Contact Section -->
+<!-- ===== Contact Section ===== -->
 <section id="contact" class="py-24 bg-white dark:bg-gray-900 text-center">
   <h2 class="text-4xl font-bold mb-8 text-gray-900 dark:text-white">Let's Connect</h2>
   <div class="flex justify-center gap-8">
@@ -87,7 +88,7 @@
   </div>
 </section>
 
-<!-- Footer -->
+<!-- ===== Footer ===== -->
 <footer class="py-6 text-center bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-400">
   © 2025 BEYOND THE FRAMES
 </footer>
