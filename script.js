@@ -1,39 +1,32 @@
-// Theme Toggle
+// ===== Theme Toggle Logic =====
 const themeSwitch = document.getElementById('themeSwitch');
 const body = document.body;
-let dark = localStorage.getItem("theme") === "dark";
 
 function applyTheme() {
-  body.classList.toggle("dark", dark);
-  body.classList.toggle("light", !dark);
-  themeSwitch.classList.toggle("dark", dark);
-  localStorage.setItem("theme", dark ? "dark" : "light");
+  const isDark = body.classList.contains('dark');
+  themeSwitch.querySelector('.ri-moon-line').style.display = isDark ? 'none' : 'block';
+  themeSwitch.querySelector('.ri-sun-line').style.display = isDark ? 'block' : 'none';
 }
-applyTheme();
-themeSwitch.addEventListener("click", () => {
-  dark = !dark;
+
+themeSwitch.addEventListener('click', () => {
+  body.classList.toggle('dark');
+  body.classList.toggle('light');
   applyTheme();
 });
 
-// GitHub API Gallery
+// Initial Theme Check
+applyTheme();
+
+// ===== Load Gallery Images Dynamically from GitHub Repo =====
 async function loadGalleryFromGitHub() {
   const res = await fetch("https://api.github.com/repos/bharatgada/Beyond-the-Frames/contents/images/gallery");
   const files = await res.json();
-  const gallery = document.getElementById("gallery-grid");
+  const gallery = document.getElementById('gallery-grid');
 
-  files
-    .filter(file => file.type === "file" && /\.(jpg|jpeg|png|webp)$/i.test(file.name))
+  files.filter(file => file.type === "file" && /\.(jpg|jpeg|png|webp)$/i.test(file.name))
     .forEach(file => {
-      const div = document.createElement("div");
-      div.className = "gallery-item overflow-hidden rounded shadow-lg hover:scale-105 transition-transform";
-      div.innerHTML = `<img src="${file.download_url}" alt="Gallery" class="w-full h-72 object-cover">`;
+      const div = document.createElement('div');
+      div.className = "overflow-hidden rounded-xl shadow-lg hover:scale-105 transition";
+      div.innerHTML = `<img src="${file.download_url}" alt="Gallery Image" class="w-full h-72 object-cover">`;
       gallery.appendChild(div);
     });
-}
-loadGalleryFromGitHub();
-
-// Contact Info Toggle
-function toggleContactInfo() {
-  const box = document.getElementById("contactInfo");
-  box.classList.toggle("hidden");
-}
