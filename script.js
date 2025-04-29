@@ -1,7 +1,10 @@
-// ===== Loader Logic =====
+// ===== Loader Logic (Fixed) =====
 window.addEventListener("load", () => {
   const loader = document.getElementById('loader');
-  loader.style.display = 'none';
+  loader.classList.add('fade-out');
+  setTimeout(() => {
+    loader.style.display = 'none';
+  }, 1000); // After fade animation finishes
 });
 
 // ===== Theme Toggle =====
