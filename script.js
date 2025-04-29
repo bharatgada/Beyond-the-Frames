@@ -1,4 +1,10 @@
-// ===== Theme Toggle Logic =====
+// ===== Loader Logic =====
+window.addEventListener("load", () => {
+  const loader = document.getElementById('loader');
+  loader.style.display = 'none';
+});
+
+// ===== Theme Toggle =====
 const themeSwitch = document.getElementById('themeSwitch');
 const body = document.body;
 
@@ -13,11 +19,9 @@ themeSwitch.addEventListener('click', () => {
   body.classList.toggle('light');
   applyTheme();
 });
+applyTheme(); // On page load
 
-// Initial Theme Check
-applyTheme();
-
-// ===== Load Gallery Images Dynamically from GitHub Repo =====
+// ===== Load Gallery Images Dynamically from GitHub =====
 async function loadGalleryFromGitHub() {
   const res = await fetch("https://api.github.com/repos/bharatgada/Beyond-the-Frames/contents/images/gallery");
   const files = await res.json();
@@ -30,3 +34,14 @@ async function loadGalleryFromGitHub() {
       div.innerHTML = `<img src="${file.download_url}" alt="Gallery Image" class="w-full h-72 object-cover">`;
       gallery.appendChild(div);
     });
+}
+loadGalleryFromGitHub();
+
+// ===== ScrollReveal Animations =====
+ScrollReveal().reveal('section', {
+  distance: '50px',
+  duration: 1200,
+  easing: 'ease',
+  origin: 'bottom',
+  interval: 200
+});
