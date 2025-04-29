@@ -5,19 +5,17 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Light Theme */
+/* Body Light & Dark Mode */
 body.light {
   background-color: #ffffff;
   color: #1a1a1a;
 }
-
-/* Dark Theme */
 body.dark {
   background-color: #1a1a1a;
   color: #f5f5f5;
 }
 
-/* Navbar Styles */
+/* Glass Navbar */
 .navbar {
   background-color: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
@@ -26,21 +24,41 @@ body.dark {
   background-color: rgba(26, 26, 26, 0.8);
 }
 
-/* Hero Section Overlay */
-.hero-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(5px);
+/* Zooming Hero Background */
+.zoom-bg {
+  animation: zoom 20s infinite alternate ease-in-out;
+}
+@keyframes zoom {
+  from { background-size: 100%; }
+  to { background-size: 110%; }
 }
 
-/* Section Headings */
-section h2 {
-  font-family: 'Playfair Display', serif;
+/* Fading Animation for Hero Text */
+.animate-fade-in {
+  opacity: 0;
+  animation: fadeIn 1.5s forwards;
+}
+.animate-fade-in.delay-200 {
+  animation-delay: 0.5s;
+}
+@keyframes fadeIn {
+  to { opacity: 1; }
 }
 
-/* Gallery Grid */
+/* Loader Spin Animation */
+#loader {
+  background-color: white;
+  z-index: 9999;
+}
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Gallery Hover Effects */
 #gallery-grid img {
   transition: transform 0.5s ease, opacity 0.5s ease;
 }
@@ -49,14 +67,8 @@ section h2 {
   opacity: 0.9;
 }
 
-/* Contact Icons */
+/* Contact Icon Hover Bounce */
 .contact-icon {
-  width: 56px;
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 9999px;
   transition: transform 0.3s ease;
 }
 .contact-icon:hover {
@@ -68,7 +80,7 @@ footer {
   font-size: 0.9rem;
 }
 
-/* Dark Mode Fixes */
+/* Dark mode fixes for sections */
 .dark .bg-white {
   background-color: #1a1a1a;
 }
@@ -82,7 +94,7 @@ footer {
   color: #e5e7eb;
 }
 
-/* Font Styling */
+/* Font Families */
 body {
   font-family: 'DM Sans', sans-serif;
 }
