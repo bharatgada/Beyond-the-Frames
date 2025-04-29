@@ -1,50 +1,72 @@
-// ===== Loader Logic =====
-window.addEventListener("load", () => {
-  const loader = document.getElementById('loader');
-  loader.classList.add('fade-out');
-  setTimeout(() => {
-    loader.style.display = 'none';
-  }, 1000);
-});
-
-// ===== Theme Toggle =====
-const themeSwitch = document.getElementById('themeSwitch');
+// Theme Toggle (Light/Dark)
+const toggleBtn = document.getElementById('theme-toggle');
 const body = document.body;
-
-function applyTheme() {
-  const isDark = body.classList.contains('dark');
-  themeSwitch.querySelector('.ri-moon-line').style.display = isDark ? 'none' : 'block';
-  themeSwitch.querySelector('.ri-sun-line').style.display = isDark ? 'block' : 'none';
+// Initialize theme from localStorage
+if (localStorage.getItem('theme') === 'dark') {
+  body.classList.add('dark');
+  toggleBtn.querySelector('i').classList.replace('fa-moon', 'fa-sun');
 }
-
-themeSwitch.addEventListener('click', () => {
+toggleBtn.addEventListener('click', () => {
   body.classList.toggle('dark');
-  body.classList.toggle('light');
-  applyTheme();
+  const icon = toggleBtn.querySelector('i');
+  if (body.classList.contains('dark')) {
+    icon.classList.replace('fa-moon', 'fa-sun');
+    localStorage.setItem('theme', 'dark');
+  } else {
+    icon.classList.replace('fa-sun', 'fa-moon');
+    localStorage.setItem('theme', 'light');
+  }
 });
-applyTheme(); // On page load
 
-// ===== Load Gallery Images Dynamically from GitHub =====
-async function loadGalleryFromGitHub() {
-  const res = await fetch("https://api.github.com/repos/bharatgada/Beyond-the-Frames/contents/images/gallery");
-  const files = await res.json();
-  const gallery = document.getElementById('gallery-grid');
+// Navbar Shrink on Scroll
+window.addEventListener('scroll', () => {
+  const navbar = document.getElementById('navbar');
+  if (window.scrollY > 50) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+});
 
-  files.filter(file => file.type === "file" && /\.(jpg|jpeg|png|webp)$/i.test(file.name))
-    .forEach(file => {
-      const div = document.createElement('div');
-      div.className = "overflow-hidden rounded-xl shadow-lg hover:scale-105 transition";
-      div.innerHTML = `<img src="${file.download_url}" alt="Gallery Image" class="w-full h-72 object-cover">`;
-      gallery.appendChild(div);
+// Loading Screen Fade-Out
+window.addEventListener('load', () => {
+  const loader = document.getElementById('loading');
+  loader.classList.add('hide');
+  setTimeout(() => loader.style.display = 'none', 500);
+});
+
+// Gallery: Fetch images from GitHub repository folder
+const galleryGrid = document.getElementById('galleryGrid');
+fetch('https://api.github.com/repos/bharathgada/portfolio/contents/images/gallery')
+  .then(res => res.json())
+  .then(files => {
+    files.forEach(file => {
+      if (file.type === 'file') {
+        const img = document.createElement('img');
+        img.src = file.download_url;
+        img.alt = file.name;
+        const div = document.createElement('div');
+        div.className = 'gallery-item';
+        div.appendChild(img);
+        galleryGrid.appendChild(div);
+      }
     });
-}
-loadGalleryFromGitHub();
+  })
+  .catch(err => {
+    console.warn('Gallery fetch failed:', err);
+    // Fallback: add placeholder images if needed
+    const placeholderImages = ['gallery1.jpg','gallery2.jpg','gallery3.jpg','gallery4.jpg','gallery5.jpg','gallery6.jpg'];
+    placeholderImages.forEach(src => {
+      const img = document.createElement('img');
+      img.src = 'images/gallery/' + src;
+      const div = document.createElement('div');
+      div.className = 'gallery-item';
+      div.appendChild(img);
+      galleryGrid.appendChild(div);
+    });
+  });
 
-// ===== ScrollReveal Animations =====
-ScrollReveal().reveal('section', {
-  distance: '50px',
-  duration: 1200,
-  easing: 'ease',
-  origin: 'bottom',
-  interval: 200
-});
+// ScrollReveal Animations for smooth entrance&#8203;:contentReference[oaicite:7]{index=7}
+ScrollReveal().reveal('.about-content', { origin: 'left', distance: '50px', duration: 800 });
+ScrollReveal().reveal('.gallery-item', { origin: 'bottom', distance: '20px', interval: 100 });
+ScrollReveal().reveal('.contact .container', { origin: 'bottom', distance: '20px', duration: 800 });
