@@ -1,92 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Beyond the Frames | Bharath Gada</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-  <!-- Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="..." crossorigin="anonymous" />
-  <!-- Custom styles -->
-  <link rel="stylesheet" href="style.css">
-</head>
-<body class="light">
+// Dark/Light mode toggle
+const toggle = document.getElementById('theme-toggle');
+const body = document.body;
 
-  <!-- Loading Screen -->
-  <div id="loading">
-    <div class="spinner"></div>
-  </div>
+if (localStorage.getItem('theme') === 'dark') {
+  body.classList.add('dark');
+}
 
-  <!-- Navbar -->
-  <nav id="navbar" class="navbar">
-    <div class="container nav-wrapper">
-      <div class="logo"><a href="#">Beyond the Frames</a></div>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <button id="theme-toggle"><i class="fa-solid fa-moon"></i></button>
-    </div>
-  </nav>
+toggle.addEventListener('click', () => {
+  body.classList.toggle('dark');
+  localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
+});
 
-  <!-- Hero Section -->
-  <section id="hero" class="hero">
-    <div class="hero-background"></div>
-    <div class="hero-content">
-      <h1>Beyond the Frames</h1>
-      <p>Capturing Moments Beyond Time.</p>
-    </div>
-  </section>
+// Loader fade out
+window.addEventListener('load', () => {
+  const loader = document.getElementById('loading');
+  loader.classList.add('hide');
+});
 
-  <!-- About Section -->
-  <section id="about" class="about section">
-    <div class="container">
-      <h2>About Bharath Gada</h2>
-      <div class="about-content">
-        <div class="about-image">
-          <img src="about.jpg" alt="Bharath Gada">
-        </div>
-        <div class="about-text">
-          <p>Bharath Gada's journey in photography is a narrative of passion, perseverance, and artistic vision. From capturing intimate portraits to sweeping landscapes, each frame tells a story that transcends time. His work reflects an emotional depth and a dedication to seeing the extraordinary in the ordinary.</p>
-          <blockquote>“Photography is my language.”</blockquote>
-        </div>
-      </div>
-    </div>
-  </section>
+// Auto-load gallery images from GitHub repo
+const galleryGrid = document.getElementById("galleryGrid");
+fetch("https://api.github.com/repos/bharatgada/Beyond-the-Frames/contents/images/gallery")
+  .then(res => res.json())
+  .then(files => {
+    files.forEach(file => {
+      if (file.download_url.match(/\.(jpg|jpeg|png|webp)$/i)) {
+        const div = document.createElement("div");
+        div.className = "gallery-item";
+        const img = document.createElement("img");
+        img.src = file.download_url;
+        img.alt = file.name;
+        div.appendChild(img);
+        galleryGrid.appendChild(div);
+      }
+    });
+  })
+  .catch(err => {
+    galleryGrid.innerHTML = "<p style='text-align:center;'>Gallery could not load. Please check GitHub setup.</p>";
+    console.error("Gallery error:", err);
+  });
 
-  <!-- Gallery Section -->
-  <section id="gallery" class="gallery section">
-    <div class="container">
-      <h2>Gallery</h2>
-      <div id="galleryGrid" class="gallery-grid">
-        <!-- Images will be dynamically loaded here -->
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="contact section">
-    <div class="container">
-      <h2>Contact</h2>
-      <p>Let’s connect and create together.</p>
-    </div>
-    <div class="contact-icons">
-      <a href="https://wa.me/1234567890" class="contact-icon" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-      <a href="https://instagram.com/yourprofile" class="contact-icon" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-      <a href="mailto:example@example.com" class="contact-icon" title="Email"><i class="fa-solid fa-envelope"></i></a>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <p>© 2025 Beyond the Frames. Crafted with Passion by Bharath Gada.</p>
-  </footer>
-
-  <!-- ScrollReveal Library -->
-  <script src="https://unpkg.com/scrollreveal"></script>
-  <!-- Custom JavaScript -->
-  <script src="script.js"></script>
-</body>
-</html>
+// Scroll reveal animations
+ScrollReveal().reveal('.about-content', { delay: 200, duration: 1000, distance: '50px', origin: 'left' });
+ScrollReveal().reveal('.gallery-item', { interval: 100, origin: 'bottom', distance: '20px' });
+ScrollReveal().reveal('.contact .container', { duration: 800, origin: 'bottom', distance: '30px' });
