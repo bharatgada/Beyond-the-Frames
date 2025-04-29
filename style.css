@@ -5,7 +5,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Body Light & Dark Mode */
+/* Light and Dark Mode Backgrounds */
 body.light {
   background-color: #ffffff;
   color: #1a1a1a;
@@ -33,7 +33,7 @@ body.dark {
   to { background-size: 110%; }
 }
 
-/* Fading Animation for Hero Text */
+/* Fading Text Animation */
 .animate-fade-in {
   opacity: 0;
   animation: fadeIn 1.5s forwards;
@@ -45,20 +45,13 @@ body.dark {
   to { opacity: 1; }
 }
 
-/* Loader Spin Animation */
-#loader {
-  background-color: white;
-  z-index: 9999;
-}
-.animate-spin {
-  animation: spin 1s linear infinite;
-}
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+/* Loader Fade Out */
+#loader.fade-out {
+  opacity: 0;
+  transition: opacity 1s ease;
 }
 
-/* Gallery Hover Effects */
+/* Gallery Image Hover */
 #gallery-grid img {
   transition: transform 0.5s ease, opacity 0.5s ease;
 }
@@ -67,47 +60,15 @@ body.dark {
   opacity: 0.9;
 }
 
-/* Contact Icon Hover Bounce */
-.contact-icon {
-  transition: transform 0.3s ease;
-}
-.contact-icon:hover {
-  transform: scale(1.1);
-}
-
 /* Footer */
 footer {
   font-size: 0.9rem;
 }
 
-/* Dark mode fixes for sections */
-.dark .bg-white {
-  background-color: #1a1a1a;
-}
-.dark .bg-gray-100 {
-  background-color: #1f1f1f;
-}
-.dark .text-gray-800 {
-  color: #d1d5db;
-}
-.dark .text-gray-900 {
-  color: #e5e7eb;
-}
-
-/* Font Families */
+/* Fonts */
 body {
   font-family: 'DM Sans', sans-serif;
 }
 h1, h2, h3 {
   font-family: 'Playfair Display', serif;
-}
-
-/* General transitions */
-body, nav, footer, section, img {
-  transition: all 0.4s ease;
-}
-/* Loader Fade Out */
-#loader.fade-out {
-  opacity: 0;
-  transition: opacity 1s ease;
 }
