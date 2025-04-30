@@ -1,85 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Beyond the Frames | Bharath Gada</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body class="light">
-
-<!-- Loader -->
-<div id="loading"><div class="spinner"></div></div>
-
-<!-- Navbar -->
-<nav class="navbar" id="navbar">
-  <div class="logo"><a href="#">Beyond the Frames</a></div>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <button id="theme-toggle"><i class="fa-solid fa-moon"></i></button>
-</nav>
-
-<!-- Hero Section -->
-<section class="hero">
-  <div class="hero-background"></div>
-  <div class="hero-content">
-    <h1>Beyond the Frames</h1>
-    <p>Capturing Moments Beyond Time.</p>
-  </div>
-</section>
-
-<!-- About Section -->
-<section class="section" id="about">
-  <div class="container about-content">
-    <div class="about-image">
-      <img src="images/about.jpg" alt="Bharath Gada">
+  <!-- NAVBAR -->
+  <nav class="navbar fixed top-0 w-full z-50 px-6 py-4 transition-all duration-300">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="#" class="text-2xl font-semibold text-primary tracking-wide">Beyond the Frames</a>
+      <div class="hidden md:flex items-center space-x-8 text-white">
+        <a href="#about" class="nav-link hover:text-primary">About</a>
+        <a href="#gallery" class="nav-link hover:text-primary">Gallery</a>
+        <a href="#contact" class="nav-link hover:text-primary">Contact</a>
+        <div class="theme-switch ml-4" id="themeSwitch">
+          <i class="ri-sun-line icon sun-icon"></i>
+          <i class="ri-moon-line icon moon-icon"></i>
+        </div>
+      </div>
     </div>
-    <div class="about-text">
-      <h2>About Bharath Gada</h2>
-      <p>Bharath Gada's journey in photography is a narrative of passion, perseverance, and artistic vision. From capturing intimate portraits to sweeping landscapes, each frame tells a story that transcends time. His work reflects an emotional depth and a dedication to seeing the extraordinary in the ordinary.</p>
-      <blockquote>“Photography is my language.”</blockquote>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero-section h-screen flex items-center justify-center bg-cover bg-center" style="background-image: url('images/hero.jpg');">
+    <div class="container mx-auto text-center z-10">
+      <h1 class="text-6xl text-white font-bold">Beyond the Frames</h1>
+      <h2 class="text-2xl text-white mt-4">by Bharath Gada</h2>
+      <a href="#gallery" class="mt-10 inline-block px-6 py-3 bg-primary text-white rounded hover:scale-105 transition-all">View Gallery</a>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Gallery Section -->
-<section class="section" id="gallery">
-  <div class="container">
-    <h2>Gallery</h2>
-    <div id="galleryGrid" class="gallery-grid"></div>
-  </div>
-</section>
+  <!-- ABOUT -->
+  <section id="about" class="py-32 bg-white dark:bg-gray-900">
+    <div class="container mx-auto px-6 max-w-5xl text-center">
+      <h2 class="text-4xl font-bold mb-6">About</h2>
+      <p class="text-lg text-gray-700 dark:text-gray-300">Capturing life's beautiful moments through my lens. Featured in National Geographic, Vogue, and more.</p>
+    </div>
+  </section>
 
-<!-- Contact Section -->
-<section class="section" id="contact">
-  <div class="container">
-    <h2>Contact</h2>
-    <p>Let’s connect and create together.</p>
-  </div>
-  <div class="contact-icons">
-    <a href="https://wa.me/919876543210" class="contact-icon" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-    <a href="https://instagram.com/beyondtheframes" class="contact-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
-    <a href="mailto:bharathgada@gmail.com" class="contact-icon" title="Email"><i class="fa-solid fa-envelope"></i></a>
-  </div>
-</section>
+  <!-- GALLERY -->
+  <section id="gallery" class="py-32 bg-gray-100 dark:bg-gray-800">
+    <div class="container mx-auto px-6 max-w-7xl">
+      <h2 class="text-4xl font-bold text-center mb-12">Gallery</h2>
+      <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+  </section>
 
-<!-- Footer -->
-<footer class="footer">
-  <p>© 2025 Beyond the Frames. Crafted with Passion by Bharath Gada.</p>
-</footer>
+  <!-- CONTACT -->
+  <section id="contact" class="py-32 bg-white dark:bg-gray-900 text-center">
+    <h2 class="text-4xl font-bold mb-4">Get in Touch</h2>
+    <p class="mb-6 text-lg text-gray-700 dark:text-gray-300">Let’s create something extraordinary together.</p>
+    <div class="flex flex-col md:flex-row gap-6 justify-center items-center">
+      <button onclick="toggleContactInfo()" class="bg-primary text-white px-6 py-3 rounded-full flex items-center justify-center gap-2 hover:brightness-110 transition">
+        <i class="ri-phone-line text-xl"></i>
+      </button>
+      <a href="https://wa.me/919876543210" target="_blank" class="w-12 h-12 flex items-center justify-center text-white bg-green-500 rounded-full hover:scale-105 transition">
+        <i class="ri-whatsapp-line text-2xl"></i>
+      </a>
+      <a href="https://instagram.com/beyondtheframes" target="_blank" class="w-12 h-12 flex items-center justify-center text-white bg-gradient-to-br from-pink-500 via-red-500 to-yellow-500 rounded-full hover:scale-105 transition">
+        <i class="ri-instagram-line text-2xl"></i>
+      </a>
+    </div>
+    <div id="contactInfo" class="hidden mt-6 bg-gray-100 dark:bg-gray-800 text-black dark:text-white p-4 rounded shadow-lg inline-block">
+      <p><strong>Phone:</strong> +91 98765 43210</p>
+      <p><strong>Email:</strong> bharathgada@gmail.com</p>
+    </div>
+  </section>
 
-<!-- ScrollReveal and Custom JS -->
-<script src="https://unpkg.com/scrollreveal"></script>
-<script src="script.js"></script>
+  <footer class="py-6 text-center bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300">
+    &copy; 2025 Beyond the Frames
+  </footer>
 
+  <script src="script.js"></script>
 </body>
 </html>
