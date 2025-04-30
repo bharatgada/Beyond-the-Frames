@@ -1,84 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Beyond the Frames | Bharath Gada</title>
-  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" />
-  <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="light transition-colors duration-500">
-  <!-- Navbar -->
-  <nav class="navbar fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center bg-white dark:bg-gray-900 shadow-md transition-all">
-    <a href="#" class="text-2xl font-bold text-primary dark:text-white">Beyond the Frames</a>
-    <div class="flex items-center space-x-6">
-      <a href="#about" class="nav-link text-gray-800 dark:text-white hover:text-primary">About</a>
-      <a href="#gallery" class="nav-link text-gray-800 dark:text-white hover:text-primary">Gallery</a>
-      <a href="#contact" class="nav-link text-gray-800 dark:text-white hover:text-primary">Contact</a>
-      <div id="themeSwitch" class="cursor-pointer">
-        <i class="ri-sun-line text-2xl hidden"></i>
-        <i class="ri-moon-line text-2xl"></i>
-      </div>
-    </div>
-  </nav>
 
-  <!-- Hero -->
-  <section class="relative h-screen flex items-center justify-center bg-cover bg-center" style="background-image: url('images/hero.jpg');">
-    <div class="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"></div>
-    <div class="relative z-10 text-center">
-      <h1 class="text-5xl md:text-7xl text-white font-bold">Beyond the Frames</h1>
-      <h2 class="text-2xl md:text-3xl text-gray-200 mt-4">by Bharath Gada</h2>
-      <a href="#gallery" class="inline-block mt-8 px-8 py-3 bg-primary text-white rounded-full hover:scale-105 transition">View Gallery</a>
-    </div>
-  </section>
+<body class="light">
 
-  <!-- About -->
-  <section id="about" class="py-24 bg-white dark:bg-gray-900 text-center">
-    <div class="container mx-auto px-6">
-      <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-8">About</h2>
-      <div class="flex flex-col items-center">
-        <div class="w-48 h-48 rounded-full overflow-hidden border-4 border-primary shadow-lg mb-6">
-          <img src="images/about.jpg" alt="Bharath Gada" class="w-full h-full object-cover" />
-        </div>
-        <p class="text-lg text-gray-700 dark:text-gray-300 max-w-2xl">Capturing life's beautiful moments with passion and precision. Featured in National Geographic, Vogue, and more.</p>
-      </div>
-    </div>
-  </section>
+<!-- Loader -->
+<div id="loading"><div class="spinner"></div></div>
 
-  <!-- Gallery -->
-  <section id="gallery" class="py-24 bg-gray-100 dark:bg-gray-800">
-    <div class="container mx-auto px-6">
-      <h2 class="text-4xl font-bold text-center text-gray-900 dark:text-white mb-12">Gallery</h2>
-      <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-    </div>
-  </section>
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="logo"><a href="#">Beyond the Frames</a></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button id="theme-toggle"><i class="fa-solid fa-moon"></i></button>
+</nav>
 
-  <!-- Contact -->
-  <section id="contact" class="py-24 bg-white dark:bg-gray-900 text-center">
-    <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-8">Get in Touch</h2>
-    <p class="text-lg text-gray-700 dark:text-gray-300 mb-6">Let's create something extraordinary together!</p>
-    <div class="flex justify-center gap-6">
-      <button onclick="toggleContactInfo()" class="w-12 h-12 flex items-center justify-center bg-primary text-white rounded-full hover:scale-110 transition">
-        <i class="ri-phone-line text-2xl"></i>
-      </button>
-      <a href="https://wa.me/919876543210" target="_blank" class="w-12 h-12 flex items-center justify-center bg-green-500 text-white rounded-full hover:scale-110 transition">
-        <i class="ri-whatsapp-line text-2xl"></i>
-      </a>
-      <a href="https://instagram.com/beyondtheframes" target="_blank" class="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-pink-500 via-red-500 to-yellow-500 text-white rounded-full hover:scale-110 transition">
-        <i class="ri-instagram-line text-2xl"></i>
-      </a>
-    </div>
-    <div id="contactInfo" class="hidden mt-8 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white p-6 rounded-lg shadow-lg inline-block">
-      <p><strong>Phone:</strong> +91 98765 43210</p>
-      <p><strong>Email:</strong> bharathgada@gmail.com</p>
-    </div>
-  </section>
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-background"></div>
+  <div class="hero-content">
+    <h1>Beyond the Frames</h1>
+    <p>Capturing Moments Beyond Time.</p>
+  </div>
+</section>
 
-  <footer class="py-6 text-center text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-900">
-    © 2025 Beyond the Frames
-  </footer>
+<!-- About Section -->
+<section class="section" id="about">
+  <div class="container about-content">
+    <div class="about-image">
+      <img src="images/about.jpg" alt="Bharath Gada">
+    </div>
+    <div class="about-text">
+      <h2>About Bharath Gada</h2>
+      <p>Bharath Gada's journey in photography is a narrative of passion, perseverance, and artistic vision. From capturing intimate portraits to sweeping landscapes, each frame tells a story that transcends time. His work reflects an emotional depth and a dedication to seeing the extraordinary in the ordinary.</p>
+      <blockquote>“Photography is my language.”</blockquote>
+    </div>
+  </div>
+</section>
 
-  <script src="script.js"></script>
+<!-- Gallery Section -->
+<section class="section" id="gallery">
+  <div class="container">
+    <h2>Gallery</h2>
+    <div id="galleryGrid" class="gallery-grid"></div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="section" id="contact">
+  <div class="container">
+    <h2>Contact</h2>
+    <p>Let’s connect and create together.</p>
+  </div>
+  <div class="contact-icons">
+    <a href="https://wa.me/919876543210" class="contact-icon" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://instagram.com/beyondtheframes" class="contact-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="mailto:bharathgada@gmail.com" class="contact-icon" title="Email"><i class="fa-solid fa-envelope"></i></a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <p>© 2025 Beyond the Frames. Crafted with Passion by Bharath Gada.</p>
+</footer>
+
+<!-- ScrollReveal and Custom JS -->
+<script src="https://unpkg.com/scrollreveal"></script>
+<script src="script.js"></script>
+
 </body>
 </html>
