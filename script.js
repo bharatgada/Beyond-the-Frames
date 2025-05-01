@@ -1,20 +1,26 @@
 // === Theme Toggle ===
 const toggleBtn = document.getElementById('theme-toggle');
+const icon = toggleBtn.querySelector('i');
 const body = document.body;
+
+function updateIcon() {
+  icon.className = body.classList.contains('dark') ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+}
 
 if (localStorage.getItem('theme') === 'dark') {
   body.classList.add('dark');
+  updateIcon();
 }
 
 toggleBtn.addEventListener('click', () => {
   body.classList.toggle('dark');
   localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
+  updateIcon();
 });
 
 // === Loader Fade Out ===
 window.addEventListener('load', () => {
-  const loader = document.getElementById('loading');
-  loader.classList.add('hide');
+  document.getElementById('loading').classList.add('hide');
 });
 
 // === Gallery Load from GitHub ===
@@ -27,6 +33,7 @@ fetch('https://api.github.com/repos/bharatgada/Beyond-the-Frames/contents/images
         const img = document.createElement('img');
         img.src = file.download_url;
         img.alt = file.name;
+        img.loading = 'lazy';
         const div = document.createElement('div');
         div.className = 'gallery-item';
         div.appendChild(img);
@@ -48,15 +55,18 @@ document.addEventListener('click', (e) => {
   if (e.target.closest('.gallery-item img')) {
     lightboxImg.src = e.target.src;
     lightbox.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
   }
 });
 closeLightbox.addEventListener('click', () => {
   lightbox.style.display = 'none';
+  document.body.style.overflow = '';
 });
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     lightbox.style.display = 'none';
     contactModal.style.display = 'none';
+    document.body.style.overflow = '';
   }
 });
 
@@ -67,9 +77,11 @@ const closeModal = document.getElementById('closeModal');
 
 emailTrigger.addEventListener('click', () => {
   contactModal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
 });
 closeModal.addEventListener('click', () => {
   contactModal.style.display = 'none';
+  document.body.style.overflow = '';
 });
 
 // === Scroll Reveal ===
