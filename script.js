@@ -10,18 +10,18 @@ themeToggle.addEventListener('click', () => {
   icon.classList.toggle('fa-moon');
 });
 
-// Gallery Load
+// Load Gallery Images
 const galleryGrid = document.getElementById('gallery-grid');
-const imageNames = ['photo1.jpg', 'photo2.jpg', 'photo3.jpg', 'photo4.jpg', 'photo5.jpg']; // Add more as needed
-const baseUrl = 'https://raw.githubusercontent.com/bharatgada/Beyond-the-Frames/main/images/gallery/';
+const imageNames = [
+  'photo1.jpg', 'photo2.jpg', 'photo3.jpg', 'photo4.jpg', 'photo5.jpg'
+]; // Add more if needed
 
+const baseUrl = 'https://raw.githubusercontent.com/bharatgada/Beyond-the-Frames/main/images/gallery/';
 imageNames.forEach(name => {
   const img = document.createElement('img');
   img.src = `${baseUrl}${name}`;
   img.alt = name;
-  img.addEventListener('click', () => {
-    openLightbox(img.src);
-  });
+  img.addEventListener('click', () => openLightbox(img.src));
   galleryGrid.appendChild(img);
 });
 
@@ -43,7 +43,7 @@ lightbox.addEventListener('click', (e) => {
   if (e.target === lightbox) lightbox.style.display = 'none';
 });
 
-// Modal
+// Contact Modal
 const contactBtn = document.getElementById('contact-btn');
 const contactModal = document.getElementById('contact-modal');
 const modalClose = document.getElementById('modal-close');
