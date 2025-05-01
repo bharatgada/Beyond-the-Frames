@@ -4,19 +4,18 @@
   --text-light: #212121;
   --text-dark: #f1f1f1;
   --accent: #ffc107;
-  --navbar-light: rgba(255, 255, 255, 0.85);
-  --navbar-dark: rgba(18, 18, 18, 0.85);
+  --navbar-light: rgba(255,255,255,0.85);
+  --navbar-dark: rgba(18,18,18,0.85);
   --footer-light: #eee;
   --footer-dark: #1a1a1a;
 }
 
-/* === Base === */
 body {
   margin: 0;
   font-family: 'DM Sans', sans-serif;
   background: var(--bg-light);
   color: var(--text-light);
-  transition: background 0.4s ease, color 0.4s ease;
+  transition: all 0.4s ease;
 }
 body.dark {
   background: var(--bg-dark);
@@ -27,36 +26,31 @@ a {
   color: inherit;
 }
 
-/* === Navbar === */
+/* Navbar */
 .navbar {
   position: fixed;
   top: 0;
   width: 100%;
-  background: var(--navbar-light);
-  backdrop-filter: blur(10px);
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: var(--navbar-light);
+  backdrop-filter: blur(10px);
   z-index: 1000;
 }
 body.dark .navbar {
   background: var(--navbar-dark);
 }
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 1.5rem;
-  margin: 0;
-  padding: 0;
-}
-.nav-links li a {
-  font-weight: 500;
-}
 .logo a {
   font-family: 'Playfair Display', serif;
   font-weight: bold;
   font-size: 1.5rem;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
 }
 #theme-toggle {
   background: none;
@@ -66,22 +60,20 @@ body.dark .navbar {
   cursor: pointer;
 }
 
-/* === Hero Section === */
+/* Hero */
 .hero {
   height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   text-align: center;
   position: relative;
 }
 .hero-background {
   position: absolute;
-  top: 0; left: 0;
   width: 100%; height: 100%;
   background: url('images/hero.jpg') center/cover no-repeat;
-  filter: brightness(0.4) blur(5px);
-  animation: zoom 20s infinite alternate;
+  filter: brightness(0.4) blur(4px);
   z-index: -1;
 }
 .hero-content h1 {
@@ -90,11 +82,11 @@ body.dark .navbar {
   color: white;
 }
 .hero-content p {
-  color: #ddd;
+  color: #eee;
   font-size: 1.3rem;
 }
 
-/* === Section & Layout === */
+/* Sections */
 .section {
   padding: 100px 0;
 }
@@ -104,20 +96,20 @@ body.dark .navbar {
   margin: auto;
 }
 
-/* === About Section === */
+/* About */
 .about-content {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   gap: 2rem;
+  align-items: center;
   justify-content: center;
 }
 .about-image img {
   width: 250px;
   height: 250px;
-  border-radius: 50%;
   object-fit: cover;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  border-radius: 50%;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 .about-text {
   max-width: 600px;
@@ -132,35 +124,50 @@ body.dark .navbar {
   color: var(--accent);
 }
 
-/* === Gallery Section === */
+/* Gallery */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
-  margin-top: 2rem;
-}
-.gallery-item {
-  overflow: hidden;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .gallery-item img {
   width: 100%;
-  height: 250px;
+  height: 320px;
   object-fit: cover;
-  transition: transform 0.4s ease, filter 0.4s ease;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
-.gallery-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-}
-.gallery-item:hover img {
-  transform: scale(1.05);
-  filter: brightness(1.1);
+.gallery-item img:hover {
+  transform: scale(1.03);
 }
 
-/* === Contact Floating Icons === */
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+}
+.close-lightbox {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+}
+
+/* Contact Floating Icons */
 .contact-icons {
   position: fixed;
   right: 20px;
@@ -168,11 +175,11 @@ body.dark .navbar {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  z-index: 1001;
+  z-index: 999;
 }
 .contact-icon {
-  width: 45px;
-  height: 45px;
+  width: 48px;
+  height: 48px;
   background-color: var(--accent);
   color: white;
   font-size: 1.4rem;
@@ -181,14 +188,44 @@ body.dark .navbar {
   justify-content: center;
   border-radius: 50%;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  transition: transform 0.3s ease;
 }
 .contact-icon:hover {
   transform: scale(1.15);
-  background-color: #ffb300;
 }
 
-/* === Footer === */
+/* Contact Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+}
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+  position: relative;
+}
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+body.dark .modal-content {
+  background: #222;
+  color: var(--text-dark);
+}
+
+/* Footer */
 .footer {
   text-align: center;
   padding: 1.5rem 0;
@@ -201,17 +238,16 @@ body.dark .footer {
   color: #ccc;
 }
 
-/* === Loader Spinner === */
+/* Loader */
 #loading {
   position: fixed;
-  top: 0; left: 0;
   width: 100%; height: 100%;
   background: var(--bg-light);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2000;
-  transition: opacity 0.5s ease;
+  z-index: 9999;
+  transition: opacity 0.5s;
 }
 body.dark #loading {
   background: var(--bg-dark);
@@ -231,18 +267,18 @@ body.dark #loading {
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
-@keyframes zoom {
-  0% { transform: scale(1); }
-  100% { transform: scale(1.1); }
-}
 
-/* === Responsive Design === */
-@media (max-width: 768px) {
-  .about-content {
-    flex-direction: column;
-    text-align: center;
+/* Responsive */
+@media (max-width: 992px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
   }
   .hero-content h1 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
   }
 }
