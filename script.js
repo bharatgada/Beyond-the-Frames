@@ -1,104 +1,81 @@
-// === Theme Toggle ===
-const toggleBtn = document.getElementById('theme-toggle');
-const icon = toggleBtn.querySelector('i');
+// Theme Toggle
+const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
 
-function updateIcon() {
-  icon.className = body.classList.contains('dark') ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
-}
-
-if (localStorage.getItem('theme') === 'dark') {
-  body.classList.add('dark');
-  updateIcon();
-}
-
-toggleBtn.addEventListener('click', () => {
-  body.classList.toggle('dark');
-  localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
-  updateIcon();
+themeToggle.addEventListener('click', () => {
+  body.dataset.theme = body.dataset.theme === 'dark' ? 'light' : 'dark';
+  const icon = themeToggle.querySelector('i');
+  icon.classList.toggle('fa-sun');
+  icon.classList.toggle('fa-moon');
 });
 
-// === Loader Fade Out ===
-window.addEventListener('load', () => {
-  document.getElementById('loading').classList.add('hide');
-});
+// Gallery Fetch from GitHub
+const galleryGrid = document.getElementById('gallery-grid');
+const repoUrl = 'https://api.github.com/repos/bharatgada/Beyond-the-Frames/contents/images/gallery';
 
-// === Gallery Load from GitHub ===
-const galleryGrid = document.getElementById('galleryGrid');
-fetch('https://api.github.com/repos/bharatgada/Beyond-the-Frames/contents/images/gallery')
-  .then(res => res.json())
-  .then(files => {
+async function loadGallery() {
+  try {
+    const response = await fetch(repoUrl);
+    const files = await response.json();
+    galleryGrid.innerHTML = '';
     files.forEach(file => {
-      if (file.download_url.match(/\.(jpg|jpeg|png|webp)$/i)) {
+      if (file.type === 'file' && /\.(jpg|jpeg|png|gif)$/i.test(file.name)) {
         const img = document.createElement('img');
         img.src = file.download_url;
         img.alt = file.name;
-        img.loading = 'lazy';
-        const div = document.createElement('div');
-        div.className = 'gallery-item';
-        div.appendChild(img);
-        galleryGrid.appendChild(div);
+        img.addEventListener('click', () => openLightbox(file.download_url));
+        galleryGrid.appendChild(img);
       }
     });
-  })
-  .catch(err => {
-    galleryGrid.innerHTML = "<p style='text-align:center;'>Could not load gallery images.</p>";
-    console.error(err);
-  });
+  } catch (error) {
+    console.error('Error loading gallery:', error);
+    galleryGrid.innerHTML = '<p>Failed to load gallery. Please try again later.</p>';
+  }
+}
 
-// === Lightbox Zoom ===
+loadGallery();
+
+// Lightbox
 const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightbox-img');
-const closeLightbox = document.getElementById('closeLightbox');
+const lightboxImage = document.getElementById('lightbox-image');
+const lightboxClose = document.getElementById('lightbox-close');
 
-document.addEventListener('click', (e) => {
-  if (e.target.closest('.gallery-item img')) {
-    lightboxImg.src = e.target.src;
-    lightbox.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-  }
-});
-closeLightbox.addEventListener('click', () => {
+function openLightbox(src) {
+  lightboxImage.src = src;
+  lightbox.style.display = 'flex';
+}
+
+lightboxClose.addEventListener('click', () => {
   lightbox.style.display = 'none';
-  document.body.style.overflow = '';
 });
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
+
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox) {
     lightbox.style.display = 'none';
-    contactModal.style.display = 'none';
-    document.body.style.overflow = '';
   }
 });
 
-// === Contact Modal ===
-const emailTrigger = document.getElementById('email-trigger');
-const contactModal = document.getElementById('contactModal');
-const closeModal = document.getElementById('closeModal');
+// Contact Modal
+const contactBtn = document.getElementById('contact-btn');
+const contactModal = document.getElementById('contact-modal');
+const modalClose = document.getElementById('modal-close');
 
-emailTrigger.addEventListener('click', () => {
+contactBtn.addEventListener('click', () => {
   contactModal.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-});
-closeModal.addEventListener('click', () => {
-  contactModal.style.display = 'none';
-  document.body.style.overflow = '';
 });
 
-// === Scroll Reveal ===
-ScrollReveal().reveal('.about-content', {
-  delay: 100,
-  distance: '50px',
-  origin: 'left',
-  duration: 800,
+modalClose.addEventListener('click', () => {
+  contactModal.style.display = 'none';
 });
-ScrollReveal().reveal('.gallery-item', {
-  interval: 100,
-  origin: 'bottom',
-  distance: '20px',
-  duration: 800,
+
+contactModal.addEventListener('click', (e) => {
+  if (e.target === contactModal) {
+    contactModal.style.display = 'none';
+  }
 });
-ScrollReveal().reveal('.contact .container', {
-  origin: 'bottom',
-  distance: '30px',
-  duration: 800,
-});
+
+// ScrollReveal Animations
+ScrollReveal().reveal('.hero-content', { delay: 200, distance: '50px', origin: 'bottom' });
+ScrollReveal().reveal('.about-content', { delay: 200, distance: '50px', origin: 'left' });
+ScrollReveal().reveal('.gallery-grid', { delay: 200, distance: '50px', origin: 'bottom' });
+ScrollReveal().reveal('.contact-links', { delay: 200, distance: '50px', origin: 'top' });
