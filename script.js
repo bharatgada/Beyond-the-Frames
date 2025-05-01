@@ -2,19 +2,13 @@
 const toggle = document.getElementById('theme-toggle');
 const body = document.body;
 
-// Check if user already selected a theme
 if (localStorage.getItem('theme') === 'dark') {
   body.classList.add('dark');
 }
 
-// Toggle dark/light theme
 toggle.addEventListener('click', () => {
   body.classList.toggle('dark');
-  if (body.classList.contains('dark')) {
-    localStorage.setItem('theme', 'dark');
-  } else {
-    localStorage.setItem('theme', 'light');
-  }
+  localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
 });
 
 // Loader Fade Out
@@ -52,14 +46,12 @@ ScrollReveal().reveal('.about-content', {
   origin: 'left',
   duration: 1000,
 });
-
 ScrollReveal().reveal('.gallery-item', {
   interval: 100,
   origin: 'bottom',
   distance: '20px',
   duration: 800,
 });
-
 ScrollReveal().reveal('.contact .container', {
   delay: 300,
   distance: '30px',
