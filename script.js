@@ -1,39 +1,61 @@
 // Theme Toggle
-const themeSwitch = document.getElementById('themeSwitch');
-const body = document.body;
-let dark = localStorage.getItem("theme") === "dark";
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
 
-function applyTheme() {
-  body.classList.toggle("dark", dark);
-  body.classList.toggle("light", !dark);
-  themeSwitch.classList.toggle("dark", dark);
-  localStorage.setItem("theme", dark ? "dark" : "light");
-}
-applyTheme();
-themeSwitch.addEventListener("click", () => {
-  dark = !dark;
-  applyTheme();
+  const icon = themeToggle.querySelector('i');
+  icon.classList.toggle('fa-sun');
+  icon.classList.toggle('fa-moon');
 });
 
-// GitHub API Gallery
-async function loadGalleryFromGitHub() {
-  const res = await fetch("https://api.github.com/repos/bharatgada/Beyond-the-Frames/contents/images/gallery");
-  const files = await res.json();
-  const gallery = document.getElementById("gallery-grid");
+// Gallery Load
+const galleryGrid = document.getElementById('gallery-grid');
+const imageNames = ['photo1.jpg', 'photo2.jpg', 'photo3.jpg', 'photo4.jpg', 'photo5.jpg']; // Add more as needed
+const baseUrl = 'https://raw.githubusercontent.com/bharatgada/Beyond-the-Frames/main/images/gallery/';
 
-  files
-    .filter(file => file.type === "file" && /\.(jpg|jpeg|png|webp)$/i.test(file.name))
-    .forEach(file => {
-      const div = document.createElement("div");
-      div.className = "gallery-item overflow-hidden rounded shadow-lg hover:scale-105 transition-transform";
-      div.innerHTML = `<img src="${file.download_url}" alt="Gallery" class="w-full h-72 object-cover">`;
-      gallery.appendChild(div);
-    });
-}
-loadGalleryFromGitHub();
+imageNames.forEach(name => {
+  const img = document.createElement('img');
+  img.src = `${baseUrl}${name}`;
+  img.alt = name;
+  img.addEventListener('click', () => {
+    openLightbox(img.src);
+  });
+  galleryGrid.appendChild(img);
+});
 
-// Contact Info Toggle
-function toggleContactInfo() {
-  const box = document.getElementById("contactInfo");
-  box.classList.toggle("hidden");
+// Lightbox
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-image');
+const lightboxClose = document.getElementById('lightbox-close');
+
+function openLightbox(src) {
+  lightboxImg.src = src;
+  lightbox.style.display = 'flex';
 }
+
+lightboxClose.addEventListener('click', () => {
+  lightbox.style.display = 'none';
+});
+
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox) lightbox.style.display = 'none';
+});
+
+// Modal
+const contactBtn = document.getElementById('contact-btn');
+const contactModal = document.getElementById('contact-modal');
+const modalClose = document.getElementById('modal-close');
+
+contactBtn.addEventListener('click', () => {
+  contactModal.style.display = 'flex';
+});
+
+modalClose.addEventListener('click', () => {
+  contactModal.style.display = 'none';
+});
+
+contactModal.addEventListener('click', (e) => {
+  if (e.target === contactModal) contactModal.style.display = 'none';
+});
