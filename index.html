@@ -3,17 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Beyond the Frames | Bharath Gada</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <title>BEYOND THE FRAMES | Bharath Gada</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="light">
 
+  <!-- Loader -->
   <div id="loading"><div class="spinner"></div></div>
 
-  <nav class="navbar" id="navbar">
-    <div class="logo"><a href="#">Beyond the Frames</a></div>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo"><a href="#">BEYOND THE FRAMES</a></div>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#gallery">Gallery</a></li>
@@ -22,14 +24,16 @@
     <button id="theme-toggle"><i class="fa-solid fa-moon"></i></button>
   </nav>
 
+  <!-- Hero -->
   <section class="hero">
     <div class="hero-background"></div>
     <div class="hero-content">
-      <h1>Beyond the Frames</h1>
+      <h1>BEYOND THE FRAMES</h1>
       <p>Capturing Moments Beyond Time.</p>
     </div>
   </section>
 
+  <!-- About -->
   <section class="section" id="about">
     <div class="container about-content">
       <div class="about-image">
@@ -37,12 +41,13 @@
       </div>
       <div class="about-text">
         <h2>About Bharath Gada</h2>
-        <p>Bharath Gada's journey in photography is a narrative of passion, perseverance, and artistic vision. Each frame tells a story that transcends time.</p>
+        <p>Bharath Gada's photography captures timeless emotions and elegant storytelling. Each frame is a narrative of light, love, and life.</p>
         <blockquote>“Photography is my language.”</blockquote>
       </div>
     </div>
   </section>
 
+  <!-- Gallery -->
   <section class="section" id="gallery">
     <div class="container">
       <h2>Gallery</h2>
@@ -50,6 +55,7 @@
     </div>
   </section>
 
+  <!-- Contact -->
   <section class="section" id="contact">
     <div class="container">
       <h2>Contact</h2>
@@ -58,16 +64,33 @@
     <div class="contact-icons">
       <a href="https://wa.me/919876543210" class="contact-icon" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
       <a href="https://instagram.com/beyondtheframes" class="contact-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="mailto:bharathgada@gmail.com" class="contact-icon" title="Email"><i class="fa-solid fa-envelope"></i></a>
+      <button class="contact-icon" id="email-trigger" title="Email"><i class="fa-solid fa-envelope"></i></button>
     </div>
   </section>
 
+  <!-- Contact Modal -->
+  <div class="modal" id="contactModal">
+    <div class="modal-content">
+      <span class="close-modal" id="closeModal">&times;</span>
+      <h3>Contact Info</h3>
+      <p><strong>Email:</strong> bharathgada@gmail.com</p>
+      <p><strong>Phone:</strong> +91 98765 43210</p>
+    </div>
+  </div>
+
+  <!-- Image Lightbox Modal -->
+  <div class="lightbox" id="lightbox">
+    <img id="lightbox-img" src="#" alt="Full View">
+    <span class="close-lightbox" id="closeLightbox">&times;</span>
+  </div>
+
+  <!-- Footer -->
   <footer class="footer">
-    <p>© 2025 Beyond the Frames. Crafted with Passion by Bharath Gada.</p>
+    <p>© 2025 BEYOND THE FRAMES. Crafted with passion by Bharath Gada.</p>
   </footer>
 
+  <!-- Scripts -->
   <script src="https://unpkg.com/scrollreveal"></script>
   <script src="script.js"></script>
-
 </body>
 </html>
