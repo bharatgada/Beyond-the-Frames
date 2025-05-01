@@ -212,6 +212,7 @@ body.dark .navbar {
   width: 300px;
   text-align: center;
   position: relative;
+  color: var(--text-light);
 }
 .close-modal {
   position: absolute;
@@ -268,6 +269,22 @@ body.dark #loading {
   to { transform: rotate(360deg); }
 }
 
+/* Theme Font Enhancements */
+body.dark h1,
+body.dark h2,
+body.dark p,
+body.dark a,
+body.dark blockquote {
+  color: var(--text-dark);
+}
+body.light h1,
+body.light h2,
+body.light p,
+body.light a,
+body.light blockquote {
+  color: var(--text-light);
+}
+
 /* Responsive */
 @media (max-width: 992px) {
   .gallery-grid {
@@ -280,5 +297,10 @@ body.dark #loading {
   }
   .hero-content h1 {
     font-size: 2.2rem;
+  }
+  .contact-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 1.2rem;
   }
 }
