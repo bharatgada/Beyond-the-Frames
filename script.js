@@ -69,3 +69,13 @@ document.addEventListener('DOMContentLoaded', () => {
     reset: false,
   });
 });
+
+// Add scroll-based navbar darkening
+const navbar = document.querySelector("nav");
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 20) {
+    navbar.classList.add("shadow-md");
+  } else {
+    navbar.classList.remove("shadow-md");
+  }
+});
