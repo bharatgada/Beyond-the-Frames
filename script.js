@@ -79,3 +79,37 @@ window.addEventListener("scroll", () => {
     navbar.classList.remove("shadow-md");
   }
 });
+
+let currentIndex = 0;
+let galleryImages = [];
+
+document.getElementById('galleryGrid').addEventListener('click', (e) => {
+  if (e.target.tagName === 'IMG') {
+    galleryImages = Array.from(document.querySelectorAll('#galleryGrid img'));
+    currentIndex = galleryImages.indexOf(e.target);
+    showLightboxImage(currentIndex);
+  }
+});
+
+function showLightboxImage(index) {
+  const lightbox = document.getElementById('lightbox');
+  const img = document.getElementById('lightbox-img');
+  if (galleryImages[index]) {
+    img.src = galleryImages[index].src;
+    lightbox.classList.remove('hidden');
+  }
+}
+
+document.getElementById('prevImage').addEventListener('click', () => {
+  currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+  showLightboxImage(currentIndex);
+});
+
+document.getElementById('nextImage').addEventListener('click', () => {
+  currentIndex = (currentIndex + 1) % galleryImages.length;
+  showLightboxImage(currentIndex);
+});
+
+document.getElementById('closeLightbox').addEventListener('click', () => {
+  document.getElementById('lightbox').classList.add('hidden');
+});

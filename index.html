@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="description" content="BEYOND THE FRAMES - Bharath Gada's premium photography portfolio capturing timeless emotions through the lens.">
+  <meta name="description" content="Beyond the Frames - Bharath Gada's premium photography portfolio capturing timeless emotions through the lens.">
   <link rel="icon" type="image/png" href="images/favicon.png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -60,7 +60,7 @@
       <div class="absolute inset-0 bg-black/40"></div>
     </div>
     <div class="relative z-10 text-center">
-      <h1 class="text-5xl md:text-7xl font-playfair font-bold text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)] mb-4">BEYOND THE FRAMES</h1>
+      <h1 class="text-5xl md:text-7xl font-playfair font-bold text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)] mb-4">Beyond the Frames</h1>
 <p class="text-lg md:text-2xl font-medium text-gray-200 dark:text-gray-300">Turning Fleeting Moments into Timeless Memories</p>
     </div>
   </section>
@@ -107,5 +107,16 @@
   </footer>
 
   <script src="script.js"></script>
+
+<!-- Swipeable Lightbox -->
+<div id="lightbox" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center z-50 flex-col">
+  <div class="relative w-full max-w-4xl px-4">
+    <button id="prevImage" class="absolute left-0 top-1/2 -translate-y-1/2 text-white text-4xl px-4">&#10094;</button>
+    <img id="lightbox-img" class="mx-auto max-h-[80vh] w-auto rounded-lg shadow-xl" />
+    <button id="nextImage" class="absolute right-0 top-1/2 -translate-y-1/2 text-white text-4xl px-4">&#10095;</button>
+  </div>
+  <button id="closeLightbox" class="mt-4 text-white text-xl bg-primary px-4 py-2 rounded">Close</button>
+</div>
 </body>
+
 </html>
