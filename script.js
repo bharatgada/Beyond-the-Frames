@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const img = document.createElement('img');
           img.src = file.download_url;
           img.alt = file.name;
-          img.className = 'w-full rounded-lg shadow-lg transition-transform duration-300 hover:scale-105 mb-4 cursor-pointer';
+          img.className = 'w-full mb-4 rounded-lg shadow-md break-inside-avoid transition-transform duration-300 hover:scale-105 cursor-pointer';
           gallery.appendChild(img);
         });
     });
