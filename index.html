@@ -1,18 +1,21 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BEYOND THE FRAMES | Bharath Gada</title>
-
-  <!-- Tailwind CSS & Fonts -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       darkMode: 'class',
       theme: {
         extend: {
-          colors: { primary: '#D4AF37' },
+          colors: {
+            primary: '#F1675D',
+            navy: '#0F172A',
+            charcoal: '#1C1C1C'
+          },
           fontFamily: {
             sans: ['DM Sans', 'sans-serif'],
             playfair: ['Playfair Display', 'serif']
@@ -26,43 +29,40 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white transition duration-300">
-  <!-- Loading Spinner -->
   <div id="loading" class="fixed inset-0 flex items-center justify-center bg-white dark:bg-gray-900 z-50">
-    <div class="spinner w-12 h-12 rounded-full border-4 border-yellow-500 border-t-transparent animate-spin"></div>
+    <div class="spinner w-12 h-12 rounded-full border-4 border-primary border-t-transparent animate-spin"></div>
   </div>
 
-  <!-- Navbar -->
-  <nav class="fixed top-0 left-0 w-full z-40 flex items-center justify-between px-6 py-2 bg-white/70 dark:bg-gray-900/70 backdrop-blur-md shadow">
+  <nav class="fixed top-0 left-0 w-full z-40 flex items-center justify-between px-6 py-2 bg-[#0F172A]/90 dark:bg-black/90 backdrop-blur-md shadow border-b border-gray-700">
     <a href="#hero" class="flex items-center">
-  <img src="images/beyond_the_frames.png" alt="BTF Logo" class="h-24 w-auto object-contain" />
-</a>
-  <div class="hidden md:flex items-center space-x-4 ml-auto">
-      <ul class="flex space-x-6 font-medium">
-        <li><a href="#about" class="hover:text-primary transition">About</a></li>
-        <li><a href="#gallery" class="hover:text-primary transition">Gallery</a></li>
-        <li><a href="#contact" class="hover:text-primary transition">Contact</a></li>
-      </ul>
+      <img src="images/beyond_the_frames.png" alt="BTF Logo" class="max-h-14 object-contain" />
+    </a>
+    <div class="hidden md:flex items-center space-x-6 ml-auto text-sm font-medium text-white">
+      <a href="#about" class="hover:text-primary transition">About</a>
+      <a href="#gallery" class="hover:text-primary transition">Gallery</a>
+      <a href="#contact" class="hover:text-primary transition">Contact</a>
       <button id="theme-toggle" class="p-2 rounded-full transition">
-        <svg id="icon-light" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden dark:inline text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg id="icon-light" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden dark:inline text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m8.485-8.485h-1M4.515 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 5a7 7 0 110 14a7 7 0 010-14z" />
         </svg>
-        <svg id="icon-dark" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline dark:hidden text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg id="icon-dark" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline dark:hidden text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" />
         </svg>
       </button>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section id="hero" class="h-screen flex items-center justify-center pt-20 relative overflow-hidden">
-    <div class="absolute inset-0 bg-[url('images/hero.jpg')] bg-cover bg-center blur-md scale-100 transition-transform duration-1000 ease-out hover:scale-105"></div>
+  <section id="hero" class="relative h-screen flex items-center justify-center text-white pt-20">
+    <div class="absolute inset-0">
+      <img src="images/hero.jpg" alt="Hero" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-black/40"></div>
+    </div>
     <div class="relative z-10 text-center">
-      <h2 class="text-5xl md:text-7xl font-playfair font-bold mb-4">Capturing Moments Beyond Time.</h2>
+      <h1 class="text-5xl md:text-7xl font-playfair font-bold drop-shadow-lg">Capturing Moments<br />Beyond the Frames</h1>
     </div>
   </section>
 
-  <!-- About Section -->
-  <section id="about" class="py-20 bg-gray-50 dark:bg-gray-800">
+  <section id="about" class="py-20 bg-gray-100 dark:bg-[#121212]">
     <div class="max-w-5xl mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
       <img src="images/about.jpg" alt="Bharath Gada" class="w-64 h-64 object-cover rounded-full shadow-lg" />
       <div>
@@ -73,16 +73,14 @@
     </div>
   </section>
 
-  <!-- Gallery Section -->
-  <section id="gallery" class="py-20">
+  <section id="gallery" class="py-20 bg-white dark:bg-gray-900">
     <div class="max-w-6xl mx-auto px-4">
       <h3 class="text-3xl font-bold text-center mb-10">Gallery</h3>
       <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="py-20 bg-gray-100 dark:bg-gray-800 text-center">
+  <section id="contact" class="py-20 bg-gray-100 dark:bg-[#121212] text-center">
     <h3 class="text-3xl font-bold mb-4">Contact Me</h3>
     <p class="mb-6">Let’s collaborate! Reach me on WhatsApp, Instagram, or via email.</p>
     <div class="flex justify-center gap-6 text-3xl">
@@ -92,7 +90,6 @@
     </div>
   </section>
 
-  <!-- Contact Modal -->
   <div id="contactModal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
     <div class="bg-white dark:bg-gray-900 p-6 rounded shadow-lg text-center relative">
       <button id="closeModal" class="absolute top-2 right-4 text-2xl">✖</button>
@@ -102,15 +99,10 @@
     </div>
   </div>
 
-  <!-- Lightbox -->
-  <div id="lightbox" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center z-50">
-    <img id="lightbox-img" class="max-w-3xl w-full rounded shadow-lg" />
-  </div>
-
-  <!-- Footer -->
-  <footer class="py-6 text-center bg-gray-200 dark:bg-gray-700">
+  <footer class="py-6 text-center bg-[#1C1C1C] text-white">
     <p>© 2025 BEYOND THE FRAMES. Crafted with passion by Bharath Gada.</p>
   </footer>
+
   <script src="script.js"></script>
 </body>
 </html>

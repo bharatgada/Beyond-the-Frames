@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => document.getElementById('loading').style.display = 'none', 1000);
 
@@ -25,13 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   updateThemeIcon();
 
-  // Email modal
   document.getElementById('email-trigger').onclick = () =>
     document.getElementById('contactModal').classList.remove('hidden');
   document.getElementById('closeModal').onclick = () =>
     document.getElementById('contactModal').classList.add('hidden');
 
-  // Lightbox logic
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
   document.getElementById('galleryGrid').addEventListener('click', (e) => {
@@ -40,14 +39,13 @@ document.addEventListener('DOMContentLoaded', () => {
       lightbox.classList.remove('hidden');
     }
   });
-  lightbox.addEventListener('click', (e) => {
+  lightbox?.addEventListener('click', (e) => {
     if (e.target === lightbox) {
       lightbox.classList.add('hidden');
       lightboxImg.src = '';
     }
   });
 
-  // GitHub API fetch images
   const repo = 'bharatgada/Beyond-the-Frames';
   const gallery = document.getElementById('galleryGrid');
   fetch(`https://api.github.com/repos/${repo}/contents/images/gallery`)
@@ -64,8 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-  // Scroll reveal
-  ScrollReveal().reveal('#about, #gallery, #contact', {
+  ScrollReveal().reveal('#about, #gallery, #contact, .fade-in, .slide-up', {
     distance: '50px',
     duration: 800,
     interval: 100,
